@@ -19,9 +19,18 @@ class Single
     // These are pages that you're allowed to override with templates set in themes
     public static function getThemeableCorePages()
     {
-        $themeableCorePages = array('download_file.php', 'login.php', 'maintenance.php', 'members.php', 'page_forbidden.php', 'page_not_found.php', 'register.php', 'upgrade.php', 'user_error.php');
-
-        return $themeableCorePages;
+        return [
+            'download_file.php',
+            'login.php',
+            'maintenance.php',
+            'members.php',
+            'page_forbidden.php',
+            'page_not_found.php',
+            'page_unauthorised',
+            'register.php',
+            'upgrade.php',
+            'user_error.php'
+        ];
     }
 
     public static function getListByPackage($pkg)
