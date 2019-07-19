@@ -112,6 +112,18 @@ class DownloadFile extends PageController
         return $fv->buildForceDownloadResponse();
     }
 
+    /**
+     * @param int $fID
+     * @param null $rcID
+     *
+     * @return mixed|void
+     */
+    public function force($fID = 0, $rcID = null)
+    {
+        $this->force = true;
+        return $this->view($fID, $rcID);
+    }
+
 
     /* ACTIONS ****************************************************************/
 
