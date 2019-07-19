@@ -2,6 +2,7 @@
 namespace Concrete\Core\Http;
 
 use Concrete\Controller\Frontend\PageForbidden;
+use Concrete\Controller\Frontend\PageUnauthorised;
 use Concrete\Core\Application\ApplicationAwareInterface;
 use Concrete\Core\Application\ApplicationAwareTrait;
 use Concrete\Core\Config\Repository\Repository;
@@ -24,6 +25,7 @@ use Concrete\Core\View\View;
 use Detection\MobileDetect;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class ResponseFactory implements ResponseFactoryInterface, ApplicationAwareInterface
 {
@@ -384,5 +386,24 @@ class ResponseFactory implements ResponseFactoryInterface, ApplicationAwareInter
         } else {
             return $this->notFound('', Response::HTTP_NOT_FOUND, $headers);
         }
+    }
+
+    /**
+     * @param string $content
+     * @param int $code
+     * @param array $headers
+     *
+     * @return SymfonyResponse
+     */
+    public function unauthorised($content = '', $code = Response::HTTP_UNAUTHORIZED, $headers = [])
+    {
+        $c = Page::getByPath('/page_unauthorised');
+        if (is_object($c) && !$c->isError()) {
+            $this->request->setCurrentPage($c);
+            $controller = $c->getPageController(); // get the single page controller
+        } else {
+            $controller = $this->app->make(PageUnauthorised::class); // get the `frontend` controller
+        }
+        return $this->controller($controller, $code, $headers);
     }
 }

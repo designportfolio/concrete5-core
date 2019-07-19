@@ -92,4 +92,15 @@ interface ResponseFactoryInterface
      */
     public function collection(Collection $collection, $code = Response::HTTP_OK, $headers = array());
 
+    /**
+     * Create an unauthorised response
+     *
+     * @param string $content
+     * @param int $code
+     * @param array $headers
+     *
+     * @return SymfonyResponse
+     */
+    public function unauthorised($content = null, $code = Response::HTTP_UNAUTHORIZED, $headers = []);
+
 }
