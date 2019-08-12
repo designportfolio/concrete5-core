@@ -2,11 +2,13 @@
 
 ---
 
-## README.md
+## 1. README.md
 
 Add this readme file.
 
-## Vendor folder
+---
+
+## 2. Vendor folder
 
 ### Amend location
 
@@ -16,7 +18,9 @@ Amend `bootstrap/configure.php:150`
 const DIRNAME_VENDOR = '../../vendor';
 ```
 
-## 401 "unauthorised" response factory
+---
+
+## 3. 401 "unauthorised" response factory
 
 ### Append interface
 
@@ -60,7 +64,9 @@ public function unauthorised($content = '', $code = Response::HTTP_UNAUTHORIZED,
 }
 ```
 
-## 401 "unauthorised" frontend page
+---
+
+## 4. 401 "unauthorised" frontend page
 
 ### Add controller
 
@@ -131,7 +137,9 @@ class PageUnauthorised extends PageController
 }
 ```
 
-## 401 "unauthorised" single page
+---
+
+## 5. 401 "unauthorised" single page
 
 ### Allow single page to be themed
 
@@ -212,89 +220,19 @@ Add `single_pages/page_unauthorised.php`
 
 ```php
 <?php defined('C5_EXECUTE') or die("Access Denied."); ?>
+
 <h1 class="error"><?= t('Unauthorised'); ?></h1>
 
-<?= t('You are not authorised to access this resource.'); ?>
+<?php echo t('You are not authorised to access this resource.'); ?>
 <br/>
 <br/>
 
 <a href="<?= DIR_REL ?>/"><?= t('Back to Home'); ?></a>.
 ```
 
-## Enhance 400, 401 & 404 templates *
+---
 
-\* optional, just makes everything a bit neater.
-
-### Amend 400
-
-Amend `single_pages/page_forbidden.php`
-
-```php
-<?php defined('C5_EXECUTE') or die("Access Denied.");
-$c = Page::getCurrentPage();
-$main = new Area('Main');
-?>
-
-<?php if ($main->getTotalBlocksInArea($c) || $c->isEditMode()): ?>
-    <?php $main->display($c); ?>
-<?php else: ?>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
-            <h1 class="error"><?= t('Forbidden'); ?></h1>
-            <p><?= t('You are forbidden from accessing this resource.'); ?></p>
-            <a class="btn btn-primary" href="<?= DIR_REL; ?>/"><?= t('Back to Home'); ?></a>
-        </div>
-    </div>
-<?php endif; ?>
-```
-
-### Amend 401
-
-Amend `single_pages/page_unauthorised.php`
-
-```php
-<?php defined('C5_EXECUTE') or die("Access Denied.");
-$c = Page::getCurrentPage();
-$main = new Area('Main');
-?>
-
-<?php if ($main->getTotalBlocksInArea($c) || $c->isEditMode()): ?>
-    <?php $main->display($c); ?>
-<?php else: ?>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
-            <h1 class="error"><?= t('Unauthorised'); ?></h1>
-            <p><?= t('You are not authorised to access this resource.'); ?></p>
-            <a class="btn btn-primary" href="<?= DIR_REL; ?>/"><?= t('Back to Home'); ?></a>
-        </div>
-    </div>
-<?php endif; ?>
-```
-
-### Amend 404 template
-
-Amend `single_pages/page_not_found.php`
-
-```php
-<?php defined('C5_EXECUTE') or die("Access Denied.");
-$c = Page::getCurrentPage();
-$main = new Area('Main');
-?>
-
-<?php if ($main->getTotalBlocksInArea($c) || $c->isEditMode()): ?>
-    <?php $main->display($c); ?>
-<?php else: ?>
-    <div class="row">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
-            <h1 class="error"><?= t('Not Found'); ?></h1>
-            <p><?= t('No resource could be found at this location.'); ?></p>
-            <a class="btn btn-primary" href="<?= DIR_REL; ?>/"><?= t('Back to Home'); ?></a>
-        </div>
-    </div>
-<?php endif; ?>
-```
-
-## Update file permissions & download
+## 6. Update file permissions & download
 
 ### Amend file permissions dialog
 
