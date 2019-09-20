@@ -13,27 +13,50 @@
  * @copyright  Copyright (c) 2003-2008 Concrete5. (http://www.concrete5.org)
  * @license    http://www.concrete5.org/license/     MIT License
  */
+
+//declare(strict_types=1);
+
 namespace Concrete\Core\Validation;
 
 class SanitizeService
 {
-    public function sanitizeString($string)
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
+    public function sanitizeString(string $string): string
     {
-        return filter_var($string, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+        return (string)filter_var($string, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
     }
 
-    public function sanitizeInt($int)
+    /**
+     * @param string $int
+     *
+     * @return int
+     */
+    public function sanitizeInt(string $int): int
     {
-        return filter_var($int, FILTER_SANITIZE_NUMBER_INT);
+        return (int)filter_var($int, FILTER_SANITIZE_NUMBER_INT);
     }
 
-    public function sanitizeURL($url)
+    /**
+     * @param string $url
+     *
+     * @return string
+     */
+    public function sanitizeURL(string $url): string
     {
-        return filter_var($url, FILTER_SANITIZE_URL);
+        return (string)filter_var($url, FILTER_SANITIZE_URL);
     }
 
-    public function sanitizeEmail($email)
+    /**
+     * @param string $email
+     *
+     * @return string
+     */
+    public function sanitizeEmail(string $email): string
     {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
+        return (string)filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 }
