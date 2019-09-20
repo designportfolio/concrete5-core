@@ -25,7 +25,7 @@ class SanitizeService
      *
      * @return string
      */
-    public function sanitizeString(string $string): string
+    public function sanitizeString($string): string
     {
         return (string)filter_var($string, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
     }
@@ -35,7 +35,7 @@ class SanitizeService
      *
      * @return int
      */
-    public function sanitizeInt(string $int): int
+    public function sanitizeInt($int): int
     {
         return (int)filter_var($int, FILTER_SANITIZE_NUMBER_INT);
     }
@@ -45,7 +45,7 @@ class SanitizeService
      *
      * @return string
      */
-    public function sanitizeURL(string $url): string
+    public function sanitizeURL($url): string
     {
         return (string)filter_var($url, FILTER_SANITIZE_URL);
     }
@@ -55,7 +55,7 @@ class SanitizeService
      *
      * @return string
      */
-    public function sanitizeEmail(string $email): string
+    public function sanitizeEmail($email): string
     {
         return (string)filter_var($email, FILTER_VALIDATE_EMAIL);
     }
