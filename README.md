@@ -797,6 +797,8 @@ $form = Core::make('helper/form');
 </div>
 ```
 
+---
+
 ## 7. Add typing to sanitisation service
 
 Amend `src/Validation/SanitizeService.php`
@@ -865,5 +867,11 @@ class SanitizeService
     }
 }
 ```
+
+---
+
+## 8. Fixes `jquery-form.js` bug in Chrome 83
+
+See PR [8664](https://github.com/concrete5/concrete5/pull/8664).
 
 ---
